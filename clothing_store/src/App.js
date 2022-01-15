@@ -73,42 +73,76 @@ function App() {
   }, []);
 
   const addProducts = (product) => {
-    const exist = cartItems.find((x) => x.name === product.name);
-    // console.log(cartItems.find((x) => x.id === item.id));
-    if (exist) {
+    const existInCart = cartItems.find((x) => x.name === product.name);
+    if (existInCart) {
       setCartItems(
         cartItems.map((x) =>
           x.name === product.name
-            ? { ...exist, quantity: exist.quantity + 1 }
+            ? { ...existInCart, quantity: existInCart.quantity + 1 }
             : x
         )
       );
     } else {
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
+    const existInProductList = listProducts.find(
+      (y) => y.name === product.name
+    );
+    if (existInProductList) {
+      setListProducts(
+        listProducts.map((y) =>
+          y.name === product.name
+            ? {
+                ...existInProductList,
+                quantity: existInProductList.quantity + 1,
+              }
+            : y
+        )
+      );
+    }else{
+      setListProducts([...listProducts, { ...product, quantity: 1 }]);
+    }
   };
 
   const removeProducts = (product) => {
-    const exist = cartItems.find((x) => x.name === product.name);
-    if (exist.quantity === 1) {
+    const existInCart = cartItems.find((x) => x.name === product.name);
+    if (existInCart.quantity === 1) {
       setCartItems(cartItems.filter((x) => x.name !== product.name));
     } else {
       setCartItems(
         cartItems.map((x) =>
           x.name === product.name
-            ? { ...exist, quantity: exist.quantity - 1 }
+            ? { ...existInCart, quantity: existInCart.quantity - 1 }
             : x
         )
       );
     }
+    const existInProductList = listProducts.find(
+      (y) => y.name === product.name
+    );
+    if(existInProductList.quantity === 1){
+      setListProducts([...listProducts, { ...product, quantity: existInProductList.quantity = 0 }]);
+    }else{
+      setListProducts(
+        listProducts.map((y)=>
+          y.name === product.name ? {...existInProductList, quantity: existInProductList.quantity -1} : y
+        )
+      )
+    }
   };
 
-  const deleteProducts = (product) =>{
-    const exist = cartItems.find((x) => x.name === product.name);
-    if(exist){
+  const deleteProducts = (product) => {
+    const existInCart = cartItems.find((x) => x.name === product.name);
+    if (existInCart) {
       setCartItems(cartItems.filter((x) => x.name !== product.name));
     }
-  }
+    const existInProductList = listProducts.find(
+      (y) => y.name === product.name
+    );
+    if(existInProductList){
+      setListProducts([...listProducts, { ...product, quantity: existInProductList.quantity = 0 }]);
+    }
+  };
 
   return (
     <div className="principalContainer">

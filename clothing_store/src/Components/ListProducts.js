@@ -8,6 +8,7 @@ function ListProducts({
   removeProducts,
   deleteProducts
 }) {
+
   const inCar = (value) => {
     return cartItems.find((x) => x.name === value.name);
   };
@@ -28,7 +29,7 @@ function ListProducts({
                 <label className="productLables">{product.name}</label>
                 <label className="productLables">Price: ${product.price}</label>
                 <label className="productLables">
-                  In the cart: {product.cartQuantity}
+                  In the cart: {product.quantity}
                 </label>
                 {!inCar(product) ? (
                   <button

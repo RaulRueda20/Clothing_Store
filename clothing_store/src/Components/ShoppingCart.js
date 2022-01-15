@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 
 function ShoppingCart({ cartItems, addProducts, removeProducts }) {
-  const [discounts, setDiscounts] = useState(null);
+  const [discounts, setDiscounts] = useState('');
   const [open, setOpen] = useState(false);
 
   const handleChange = (event) => {
