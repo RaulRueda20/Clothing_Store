@@ -82,7 +82,7 @@ function ShoppingCart({ cartItems, addProducts, removeProducts }) {
                     </div>
                   </TableCell>
                   <TableCell scope="row" data-testid="cart-item-price">
-                    ${item.price}
+                    {item.quantity} X ${item.price.toFixed(2)}
                   </TableCell>
                 </TableRow>
               );
