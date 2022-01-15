@@ -1,4 +1,4 @@
-# Clothing_store\n
+# Clothing_store
  *Información del proyecto
  
  Este proyecto fue hecho con ReactJS, CSS y para componentes más complejos se usó materialUI, una librería de React que ayuda a crear componentes fácilmente.
